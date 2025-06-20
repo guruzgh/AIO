@@ -58,8 +58,9 @@ export VERSION="1.1"
 # // Exporint IP AddressInformation
 export IP=$( curl -s https://ipinfo.io/ip/ )
 
-# // Set Time To Kuala_Lumpur / GMT +8
-ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
+# // Mengatur zona waktu ke Jakarta / WIB / GMT +7
+ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+
 
 # // cek old script
 if [[ -r /etc/xray/domain ]]; then
@@ -370,7 +371,7 @@ echo "   - Trojan GO               : 443" | tee -a log-install.txt
 echo "   - Sodosok WS/GRPC         : 443" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Server Information & Other Features"  | tee -a log-install.txt
-echo "   - Timezone                : Asia/Kuala_Lumpur (GMT +8)"  | tee -a log-install.txt
+echo "   - Timezone                : Asia/Jakarta (WIB / GMT +7)" | tee -a log-install.txt
 echo "   - Fail2Ban                : [ON]"  | tee -a log-install.txt
 echo "   - Dflate                  : [ON]"  | tee -a log-install.txt
 echo "   - IPtables                : [ON]"  | tee -a log-install.txt
