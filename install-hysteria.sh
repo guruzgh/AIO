@@ -868,6 +868,11 @@ perform_install() {
                                                 read -r -p "Enter Hysteria OBFS: " OBFS
                                                 read -r -p "Enter Hysteria Password: " PASSWORD
 =======
+<<<<<<< feature/add-services-and-improve-security
+                                                read -r -p "Enter Hysteria OBFS: " OBFS
+                                                read -r -p "Enter Hysteria Password: " PASSWORD
+=======
+>>>>>>> main
 >>>>>>> main
                                                 perform_install_hysteria_binary
                                                 perform_install_hysteria_example_config
@@ -910,7 +915,11 @@ perform_remove() {
 <<<<<<< feature/add-services-and-improve-security
         echo -e "\t$(tred)rm -rf \"$CONFIG_DIR\"$(treset)"
 =======
+<<<<<<< feature/add-services-and-improve-security
+        echo -e "\t$(tred)rm -rf \"$CONFIG_DIR\"$(treset)"
+=======
 
+>>>>>>> main
 >>>>>>> main
         if [[ "x$HYSTERIA_USER" != "xroot" ]]; then
                 echo -e "\t$(tred)userdel -r \"$HYSTERIA_USER\"$(treset)"
