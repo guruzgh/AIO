@@ -585,7 +585,7 @@ parse_arguments() {
                                 show_argument_error_and_exit "Version numbers should begin with 'v' (such like 'v1.3.1'), got '$VERSION'"
                                 fi
                                 ;;
-
+                        
                         '-h' | '--help')
                         show_usage_and_exit
                         ;;
@@ -864,10 +864,8 @@ perform_install() {
                 _is_frash_install=1
                 fi
 
- feature/add-services-and-improve-security
                                                 read -r -p "Enter Hysteria OBFS: " OBFS
                                                 read -r -p "Enter Hysteria Password: " PASSWORD
-main
                                                 perform_install_hysteria_binary
                                                 perform_install_hysteria_example_config
                                                 perform_install_hysteria_home_legacy
@@ -906,10 +904,7 @@ perform_remove() {
         echo
         echo -e "You still need to remove configuration files and ACME certificates manually with the following commands:"
         echo
-        feature/add-services-and-improve-security
         echo -e "\t$(tred)rm -rf \"$CONFIG_DIR\"$(treset)"
-
-         main
         if [[ "x$HYSTERIA_USER" != "xroot" ]]; then
                 echo -e "\t$(tred)userdel -r \"$HYSTERIA_USER\"$(treset)"
                 fi
@@ -973,7 +968,7 @@ parse_arguments "$@"
         "remove")
         perform_remove
         ;;
-
+        
         *)
         error "Unknown operation '$OPERATION'."
         ;;
