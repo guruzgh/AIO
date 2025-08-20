@@ -46,8 +46,8 @@ export WARNING="${RED}\e[5m"
 export UNDERLINE="\e[4m"
 
 # // Exporting URL Host
-export Server_URL="raw.githubusercontent.com/NevermoreSSH/Blueblue/main/test"
-export Server1_URL="raw.githubusercontent.com/NevermoreSSH/Blueblue/main/limit"
+export Server_URL="raw.githubusercontent.com/eddyme23/AIO/main/test"
+export Server1_URL="raw.githubusercontent.com/eddyme23/AIO/main/limit"
 export Server_Port="443"
 export Server_IP="underfined"
 export Script_Mode="Stable"
@@ -142,10 +142,7 @@ mkdir -p /usr/local/etc/xray
 #rm -fr /etc/xray/domain
 # // String / Request Data
 mkdir -p /var/lib/scrz-prem >/dev/null 2>&1
-feature/add-services-and-improve-security
-echo "IP=$host" >> /var/lib/scrz-prem/ipvps.conf
-echo $host > /etc/xray/domain
-main
+echo "IP=$(cat /etc/xray/domain)" >> /var/lib/scrz-prem/ipvps.conf
 wget https://raw.githubusercontent.com/eddyme23/AIO/main/cf.sh && chmod +x cf.sh && ./cf.sh
 
 sleep 2
@@ -177,12 +174,9 @@ wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/ins-xray.sh && chmod
 wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 
 #install slowdns
-feature/add-services-and-improve-security
-echo -e "$white\033[0;34m┌─────────────────────────────────────────┐${NC}"
+echo -e "\033[0;34m┌─────────────────────────────────────────┐${NC}"
 echo -e " \E[41;1;39m          ⇱ Install SlowDNS ⇲           \E[0m$NC"
-echo -e "$white\033[0;34m└─────────────────────────────────────────┘${NC}"
-
-main
+echo -e "\033[0;34m└─────────────────────────────────────────┘${NC}"
 sleep 1
 wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/install-slowdns.sh && chmod +x install-slowdns.sh && ./install-slowdns.sh
 
@@ -223,8 +217,8 @@ wget -q -O /usr/bin/update "https://raw.githubusercontent.com/eddyme23/AIO/main/
 wget -q -O /usr/bin/dns "https://raw.githubusercontent.com/eddyme23/AIO/main/dns.sh"
 wget -q -O /usr/bin/netf "https://raw.githubusercontent.com/eddyme23/AIO/main/netf.sh"
 wget -q -O /usr/bin/bbr "https://raw.githubusercontent.com/eddyme23/AIO/main/bbr.sh"
-#wget -q -O /usr/bin/del-xrays "https://raw.githubusercontent.com/ica4me/FreeScriptVPSTunnel/main/del-xrays.sh"
-#wget -q -O /usr/bin/user-xrays "https://raw.githubusercontent.com/ica4me/FreeScriptVPSTunnel/main/user-xrays.sh"
+#wget -q -O /usr/bin/del-xrays "https://raw.githubusercontent.com/eddyme23/AIO/main/del-xrays.sh"
+#wget -q -O /usr/bin/user-xrays "https://raw.githubusercontent.com/eddyme23/AIO/main/user-xrays.sh"
 chmod +x /usr/bin/add-ws
 chmod +x /usr/bin/add-ssws
 chmod +x /usr/bin/add-socks
@@ -341,9 +335,6 @@ gg="PM"
 else
 gg="AM"
 fi
-feature/add-services-and-improve-security
-
- main
 echo "1.1" >> /home/.ver
 rm -fr /root/limit
 curl -sS ifconfig.me > /etc/myipvps
