@@ -1,3 +1,4 @@
+#!/bin/bash
 dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 
 # // Root Checking
@@ -67,7 +68,7 @@ if [[ -r /etc/xray/domain ]]; then
 
 echo -e "${INFO} Having Script Detected !"
 echo -e "${INFO} If You Replacing Script, All Client Data On This VPS Will Be Cleanup !"
-read -p "Are You Sure Wanna Replace Script ? (Y/N) " josdong
+read -r -p "Are You Sure Wanna Replace Script ? (Y/N) " josdong
 if [[ $josdong == "Y" ]]; then
 clear
 echo -e "${INFO} Starting Replacing Script !"
@@ -141,42 +142,47 @@ mkdir -p /usr/local/etc/xray
 #rm -fr /etc/xray/domain
 # // String / Request Data
 mkdir -p /var/lib/scrz-prem >/dev/null 2>&1
+feature/add-services-and-improve-security
 echo "IP=$host" >> /var/lib/scrz-prem/ipvps.conf
 echo $host > /etc/xray/domain
+main
 wget https://raw.githubusercontent.com/eddyme23/AIO/main/cf.sh && chmod +x cf.sh && ./cf.sh
 
 sleep 2
 
 #install jembot
-echo -e "$white\033[0;34m┌─────────────────────────────────────────┐${NC}"
+echo -e "\033[0;34m┌─────────────────────────────────────────┐${NC}"
 echo -e "                          ⇱ INSTALL DOMAIN ⇲            "
-echo -e "$white\033[0;34m└─────────────────────────────────────────┘${NC}"
+echo -e "\033[0;34m└─────────────────────────────────────────┘${NC}"
 sleep 1
 wget https://raw.githubusercontent.com/eddyme23/AIO/main/cf.sh && chmod +x cf.sh && ./cf.sh
 #install jembot
-echo -e "$white\033[0;34m┌─────────────────────────────────────────┐${NC}"
+echo -e "\033[0;34m┌─────────────────────────────────────────┐${NC}"
 echo -e " \E[41;1;39m           ⇱ Install Jembot ⇲            \E[0m$NC"
-echo -e "$white\033[0;34m└─────────────────────────────────────────┘${NC}"
+echo -e "\033[0;34m└─────────────────────────────────────────┘${NC}"
 sleep 1 
 wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/jembot.sh && chmod +x jembot.sh && ./jembot.sh
 #install ssh-vpn
-echo -e "$white\033[0;34m┌─────────────────────────────────────────┐${NC}"
+echo -e "\033[0;34m┌─────────────────────────────────────────┐${NC}"
 echo -e " \E[41;1;39m          ⇱ Install SSH / WS ⇲           \E[0m$NC"
-echo -e "$white\033[0;34m└─────────────────────────────────────────┘${NC}"
+echo -e "\033[0;34m└─────────────────────────────────────────┘${NC}"
 sleep 1
 wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 #install ins-xray
-echo -e "$white\033[0;34m┌─────────────────────────────────────────┐${NC}"
+echo -e "\033[0;34m┌─────────────────────────────────────────┐${NC}"
 echo -e " \E[41;1;39m            ⇱ Install Xray ⇲             \E[0m$NC"
-echo -e "$white\033[0;34m└─────────────────────────────────────────┘${NC}"
+echo -e "\033[0;34m└─────────────────────────────────────────┘${NC}"
 sleep 1 
 wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
 wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 
 #install slowdns
+feature/add-services-and-improve-security
 echo -e "$white\033[0;34m┌─────────────────────────────────────────┐${NC}"
 echo -e " \E[41;1;39m          ⇱ Install SlowDNS ⇲           \E[0m$NC"
 echo -e "$white\033[0;34m└─────────────────────────────────────────┘${NC}"
+
+main
 sleep 1
 wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/install-slowdns.sh && chmod +x install-slowdns.sh && ./install-slowdns.sh
 
@@ -329,12 +335,15 @@ fi
 history -c
 aureb=$(cat /home/re_otm)
 b=11
-if [ $aureb -gt $b ]
+if [ "$aureb" -gt $b ]
 then
 gg="PM"
 else
 gg="AM"
 fi
+feature/add-services-and-improve-security
+
+ main
 echo "1.1" >> /home/.ver
 rm -fr /root/limit
 curl -sS ifconfig.me > /etc/myipvps
@@ -397,5 +406,5 @@ rm -fr /root/setup.sh
 rm -fr /root/domain
 history -c
 
-read -p "$( echo -e "Press ${orange}[ ${NC}${green}Enter${NC} ${CYAN}]${NC} For Reboot") "
+read -r -p "$( echo -e "Press [ ${NC}${green}Enter${NC} ${CYAN}]${NC} For Reboot") "
 reboot

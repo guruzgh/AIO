@@ -152,33 +152,33 @@ domain=$(cat /var/lib/scrz-prem/ipvps.conf | cut -d'=' -f2)
 Cek=$(lsof -i:80 | cut -d' ' -f1 | awk 'NR==2 {print $1}')
 if [[ ! -z "$Cek" ]]; then
 sleep 1
-echo -e "[ ${red}WARNING${NC} ] Detected port 80 used by $Cek " 
+echo -e "[ ${RED}WARNING${NC} ] Detected port 80 used by $Cek "
 systemctl stop $Cek
 sleep 2
-echo -e "[ ${green}INFO${NC} ] Processing to stop $Cek " 
+echo -e "[ ${GREEN}INFO${NC} ] Processing to stop $Cek "
 sleep 1
 fi
-echo -e "[ ${green}INFO${NC} ] Starting renew gen-ssl... " 
+echo -e "[ ${GREEN}INFO${NC} ] Starting renew gen-ssl... "
 sleep 2
 /root/.acme.sh/acme.sh --upgrade
 /root/.acme.sh/acme.sh --upgrade --auto-upgrade
 /root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
 ~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/xray/xray.crt --keypath /etc/xray/xray.key --ecc
-echo -e "[ ${green}INFO${NC} ] Renew gen-ssl done... " 
+echo -e "[ ${GREEN}INFO${NC} ] Renew gen-ssl done... "
 sleep 2
-echo -e "[ ${green}INFO${NC} ] Starting service $Cek " 
+echo -e "[ ${GREEN}INFO${NC} ] Starting service $Cek "
 sleep 2
 echo $domain > /etc/xray/domain
 systemctl start nginx
 systemctl start xray
-echo -e "[ ${green}INFO${NC} ] All finished... " 
+echo -e "[ ${GREEN}INFO${NC} ] All finished... "
 sleep 0.5
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 menu
 }
-export sem=$( curl -s https://raw.githubusercontent.com/ica4me/FreeScriptVPSTunnel/main/test/versions)
+export sem=$( curl -s https://raw.githubusercontent.com/eddyme23/AIO/main/test/versions)
 export pak=$( cat /home/.ver)
 IPVPS=$(curl -s ipinfo.io/ip )
 IPVPS=$(curl -sS ipv4.icanhazip.com)
@@ -192,17 +192,17 @@ ram_usage=$(echo "scale=2; ($ram_used / $total_ram) * 100" | bc | cut -d. -f1)
 # OS Uptime
 uptime="$(uptime -p | cut -d " " -f 2-10)"
 # TOTAL ACC XRAYS WS & XTLS
-vmess=$(grep -c -E "^#vmsg $user" "/etc/xray/config.json")
-vless=$(grep -c -E "^#vlsg $user" "/etc/xray/config.json")
-tr=$(grep -c -E "^#trg $user" "/etc/xray/config.json")
-ss=$(grep -c -E "^#ssg $user" "/etc/xray/config.json")
+vmess=$(grep -c -E "^#vmsg" "/etc/xray/config.json")
+vless=$(grep -c -E "^#vlsg" "/etc/xray/config.json")
+tr=$(grep -c -E "^#trg" "/etc/xray/config.json")
+ss=$(grep -c -E "^#ssg" "/etc/xray/config.json")
 ssh="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
 # Getting CPU Information
 cpu_usage1="$(ps aux | awk 'BEGIN {sum=0} {sum+=$3}; END {print sum}')"
-cpu_usage="$((${cpu_usage1/\.*/} / ${corediilik:-1}))"
+cores=$(awk -F: '/model name/ {core++} END {print core}' /proc/cpuinfo)
+cpu_usage="$((${cpu_usage1/\.*/} / ${cores:-1}))"
 cpu_usage+="%"
 cname=$(awk -F: '/model name/ {name=$2} END {print name}' /proc/cpuinfo)
-cores=$(awk -F: '/model name/ {core++} END {print core}' /proc/cpuinfo)
 freq=$(awk -F: ' /cpu MHz/ {freq=$2} END {print freq}' /proc/cpuinfo)
 clear
 echo -e "${BICyan} ┌────────────────────────────────────────────────────────────┐${NC}"
@@ -267,7 +267,7 @@ echo -e " ${BICyan}┌───────────────────�
 echo -e " ${BICyan}│  Version      ${NC} : $sem Last Update"    
 echo -e " ${BICyan}└─────────────────────────────────────┘${NC}"
 echo
-read -p " Select menu : " opt
+read -r -p " Select menu : " opt
 echo -e ""
 case $opt in
 1) clear ; menu-ssh ;;
