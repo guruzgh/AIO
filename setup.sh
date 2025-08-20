@@ -145,7 +145,10 @@ mkdir -p /var/lib/scrz-prem >/dev/null 2>&1
 <<<<<<< feature/add-services-and-improve-security
 echo "IP=$host" >> /var/lib/scrz-prem/ipvps.conf
 echo $host > /etc/xray/domain
+<<<<<<< feature/add-services-and-improve-security
 =======
+=======
+>>>>>>> main
 >>>>>>> main
 wget https://raw.githubusercontent.com/eddyme23/AIO/main/cf.sh && chmod +x cf.sh && ./cf.sh
 
@@ -183,7 +186,13 @@ echo -e "$white\033[0;34m┌─────────────────�
 echo -e " \E[41;1;39m          ⇱ Install SlowDNS ⇲           \E[0m$NC"
 echo -e "$white\033[0;34m└─────────────────────────────────────────┘${NC}"
 =======
+<<<<<<< feature/add-services-and-improve-security
+echo -e "$white\033[0;34m┌─────────────────────────────────────────┐${NC}"
+echo -e " \E[41;1;39m          ⇱ Install SlowDNS ⇲           \E[0m$NC"
+echo -e "$white\033[0;34m└─────────────────────────────────────────┘${NC}"
+=======
 
+>>>>>>> main
 >>>>>>> main
 sleep 1
 wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/install-slowdns.sh && chmod +x install-slowdns.sh && ./install-slowdns.sh
@@ -345,7 +354,10 @@ gg="AM"
 fi
 <<<<<<< feature/add-services-and-improve-security
 =======
+<<<<<<< feature/add-services-and-improve-security
+=======
 
+>>>>>>> main
 >>>>>>> main
 echo "1.1" >> /home/.ver
 rm -fr /root/limit
