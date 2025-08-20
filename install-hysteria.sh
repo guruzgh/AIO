@@ -864,16 +864,10 @@ perform_install() {
                 _is_frash_install=1
                 fi
 
-<<<<<<< feature/add-services-and-improve-security
+ feature/add-services-and-improve-security
                                                 read -r -p "Enter Hysteria OBFS: " OBFS
                                                 read -r -p "Enter Hysteria Password: " PASSWORD
-=======
-<<<<<<< feature/add-services-and-improve-security
-                                                read -r -p "Enter Hysteria OBFS: " OBFS
-                                                read -r -p "Enter Hysteria Password: " PASSWORD
-=======
->>>>>>> main
->>>>>>> main
+main
                                                 perform_install_hysteria_binary
                                                 perform_install_hysteria_example_config
                                                 perform_install_hysteria_home_legacy
@@ -912,15 +906,10 @@ perform_remove() {
         echo
         echo -e "You still need to remove configuration files and ACME certificates manually with the following commands:"
         echo
-<<<<<<< feature/add-services-and-improve-security
+        feature/add-services-and-improve-security
         echo -e "\t$(tred)rm -rf \"$CONFIG_DIR\"$(treset)"
-=======
-<<<<<<< feature/add-services-and-improve-security
-        echo -e "\t$(tred)rm -rf \"$CONFIG_DIR\"$(treset)"
-=======
 
->>>>>>> main
->>>>>>> main
+         main
         if [[ "x$HYSTERIA_USER" != "xroot" ]]; then
                 echo -e "\t$(tred)userdel -r \"$HYSTERIA_USER\"$(treset)"
                 fi
