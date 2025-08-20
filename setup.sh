@@ -339,7 +339,7 @@ echo "1.1" >> /home/.ver
 rm -fr /root/limit
 curl -sS ifconfig.me > /etc/myipvps
 echo " "
-echo "====================-[ NevermoreSSH TUNNELING ]-===================="
+echo "====================-[ Tech Guruz GH TUNNELING ]-===================="
 echo ""
 echo "------------------------------------------------------------"
 echo ""
@@ -385,7 +385,7 @@ echo ""
 echo ""
 echo "------------------------------------------------------------"
 echo ""
-echo "===============-[ Script Mod By NEVERMORESSH TUNNELING ]-==============="
+echo "===============-[ Script Mod By Tech guruz GH TUNNELING ]-==============="
 echo -e ""
 echo ""
 echo "" | tee -a log-install.txt
