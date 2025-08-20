@@ -1,3 +1,4 @@
+#!/bin/bash
 BIBlack='\033[1;90m'      # Black
 BIRed='\033[1;91m'        # Red
 BIGreen='\033[1;92m'      # Green
@@ -57,8 +58,8 @@ export WARNING="${RED}\e[5m"
 export UNDERLINE="\e[4m"
 
 # // Exporting URL Host
-export Server_URL="raw.githubusercontent.com/NevermoreSSH/Blueblue/main/test"
-export Server1_URL="raw.githubusercontent.com/NevermoreSSH/Blueblue/main/limit"
+export Server_URL="raw.githubusercontent.com/eddyme23/AIO/main/test"
+export Server1_URL="raw.githubusercontent.com/eddyme23/AIO/main/limit"
 export Server_Port="443"
 export Server_IP="underfined"
 export Script_Mode="Stable"
@@ -88,39 +89,39 @@ stat=-f7
 fi
 ssh=$(service ssh status | grep active | cut -d ' ' $stat)
 if [ "$ssh" = "active" ]; then
-ressh="${green}ON${NC}"
+ressh="${GREEN}ON${NC}"
 else
-ressh="${red}OFF${NC}"
+ressh="${RED}OFF${NC}"
 fi
 sshstunel=$(service stunnel5 status | grep active | cut -d ' ' $stat)
 if [ "$sshstunel" = "active" ]; then
-resst="${green}ON${NC}"
+resst="${GREEN}ON${NC}"
 else
-resst="${red}OFF${NC}"
+resst="${RED}OFF${NC}"
 fi
 sshws=$(service ws-stunnel status | grep active | cut -d ' ' $stat)
 if [ "$sshws" = "active" ]; then
-ressshws="${green}ON${NC}"
+ressshws="${GREEN}ON${NC}"
 else
-ressshws="${red}OFF${NC}"
+ressshws="${RED}OFF${NC}"
 fi
 ngx=$(service nginx status | grep active | cut -d ' ' $stat)
 if [ "$ngx" = "active" ]; then
-resngx="${green}ON${NC}"
+resngx="${GREEN}ON${NC}"
 else
-resngx="${red}OFF${NC}"
+resngx="${RED}OFF${NC}"
 fi
 dbr=$(service dropbear status | grep active | cut -d ' ' $stat)
 if [ "$dbr" = "active" ]; then
-resdbr="${green}ON${NC}"
+resdbr="${GREEN}ON${NC}"
 else
-resdbr="${red}OFF${NC}"
+resdbr="${RED}OFF${NC}"
 fi
 v2r=$(service xray status | grep active | cut -d ' ' $stat)
 if [ "$v2r" = "active" ]; then
-resv2r="${green}ON${NC}"
+resv2r="${GREEN}ON${NC}"
 else
-resv2r="${red}OFF${NC}"
+resv2r="${RED}OFF${NC}"
 fi
 function addhost(){
 clear
@@ -152,27 +153,27 @@ domain=$(cat /var/lib/scrz-prem/ipvps.conf | cut -d'=' -f2)
 Cek=$(lsof -i:80 | cut -d' ' -f1 | awk 'NR==2 {print $1}')
 if [[ ! -z "$Cek" ]]; then
 sleep 1
-echo -e "[ ${RED}WARNING${NC} ] Detected port 80 used by $Cek "
+echo -e "[ ${RED}WARNING${NC} ] Detected port 80 used by $Cek " 
 systemctl stop $Cek
 sleep 2
-echo -e "[ ${GREEN}INFO${NC} ] Processing to stop $Cek "
+echo -e "[ ${GREEN}INFO${NC} ] Processing to stop $Cek " 
 sleep 1
 fi
-echo -e "[ ${GREEN}INFO${NC} ] Starting renew gen-ssl... "
+echo -e "[ ${GREEN}INFO${NC} ] Starting renew gen-ssl... " 
 sleep 2
 /root/.acme.sh/acme.sh --upgrade
 /root/.acme.sh/acme.sh --upgrade --auto-upgrade
 /root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
 ~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/xray/xray.crt --keypath /etc/xray/xray.key --ecc
-echo -e "[ ${GREEN}INFO${NC} ] Renew gen-ssl done... "
+echo -e "[ ${GREEN}INFO${NC} ] Renew gen-ssl done... " 
 sleep 2
-echo -e "[ ${GREEN}INFO${NC} ] Starting service $Cek "
+echo -e "[ ${GREEN}INFO${NC} ] Starting service $Cek " 
 sleep 2
 echo $domain > /etc/xray/domain
 systemctl start nginx
 systemctl start xray
-echo -e "[ ${GREEN}INFO${NC} ] All finished... "
+echo -e "[ ${GREEN}INFO${NC} ] All finished... " 
 sleep 0.5
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
@@ -251,6 +252,7 @@ echo -e "     ${BICyan}[${BIWhite}23${BICyan}] DNS CHANGER ${BICyan}${BIYellow}$
 echo -e "     ${BICyan}[${BIWhite}24${BICyan}] NETFLIX CHECKER ${BICyan}${BIYellow}${BICyan}${NC}"
 echo -e "     ${BICyan}[${BIWhite}25${BICyan}] TENDANG ${BICyan}${BIYellow}${BICyan}${NC}"
 echo -e "     ${BICyan}[${BIWhite}26${BICyan}] INSTALL HYSTERIA ${BICyan}${BIYellow}${BICyan}${NC}"
+echo -e "     ${BICyan}[${BIWhite}27${BICyan}] INSTALL SLOWDNS ${BICyan}${BIYellow}${BICyan}${NC}"
 #echo -e "     ${BICyan}[${BIWhite}25${BICyan}] DELETE XRAYS USER [${BIWhite} $xrays users ${BICyan}] ${BICyan}${BIYellow}${BICyan}${NC}"
 #echo -e "     ${BICyan}[${BIWhite}30${BICyan}] VLESS CONFIG ${BICyan}${BIYellow}${BICyan}${NC}"
 echo -e " "
@@ -296,6 +298,7 @@ case $opt in
 24) clear ; netf ;;
 25) clear ; tendang ;;
 26) clear ; wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/install-hysteria.sh && chmod +x install-hysteria.sh && ./install-hysteria.sh ;;
+27) clear ; wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/install-slowdns.sh && chmod +x install-slowdns.sh && ./install-slowdns.sh ;;
 55) clear ; wget -q -O /usr/bin/xraychanger "https://raw.githubusercontent.com/NevermoreSSH/Xcore-custompath/main/xraychanger.sh" && chmod +x /usr/bin/xraychanger && xraychanger ;;
 66) clear ; bbr ;;
 77) clear ; wget -q -O /usr/bin/swapram "https://raw.githubusercontent.com/NevermoreSSH/swapram/main/swapram.sh" && chmod +x /usr/bin/swapram && swapram ;;
