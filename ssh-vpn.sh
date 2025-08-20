@@ -2,7 +2,7 @@
 # =========================================
 # Quick Setup | Script Setup Manager
 # Edition : Stable Edition V1.0
-# Auther  : NevermoreSSH
+# Auther  : Tech Guruz GH
 # (C) Copyright 2022
 # =========================================
 
@@ -79,7 +79,7 @@ IP=$(curl -s ipinfo.io/ip )
 IP=$(curl -sS ipv4.icanhazip.com)
 IP=$(curl -sS ifconfig.me )
 MYIP2="s/xxxxxxxxx/$MYIP/g";
-NET=$(ip -o "$ANU" -4 route show to default | awk '{print $5}');
+NET=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 source /etc/os-release
 ver=$VERSION_ID
 
@@ -207,27 +207,27 @@ sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local >/d
 
 # set time Asia/Jakarta (WIB / GMT+7)
 sleep 1
-echo -e "[ ${GREEN}INFO$NC ] Set zona local time to Asia/Jakarta GMT+7 (WIB)"
+echo -e "[ ${green}INFO$NC ] Set zona local time to Asia/Jakarta GMT+7 (WIB)"
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 
 # install badvpn
-tesmatch=$(screen -list | awk  '{print $1}' | grep -ow "badvpn" | sort | uniq)
+tesmatch=`screen -list | awk  '{print $1}' | grep -ow "badvpn" | sort | uniq`
 if [ "$tesmatch" = "badvpn" ]; then
 sleep 1
-echo -e "[ ${GREEN}INFO$NC ] Screen badvpn detected"
+echo -e "[ ${green}INFO$NC ] Screen badvpn detected"
 rm /root/screenlog > /dev/null 2>&1
-    runningscreen=( $(screen -list | awk  '{print $1}' | grep -w "badvpn") ) # sed 's/\.[^ ]*/ /g'
+    runningscreen=( `screen -list | awk  '{print $1}' | grep -w "badvpn"` ) # sed 's/\.[^ ]*/ /g'
     for actv in "${runningscreen[@]}"
     do
-        cek=( $(screen -list | awk  '{print $1}' | grep -w "badvpn") )
-        if [ "${cek[0]}" = "$actv" ]; then
+        cek=( `screen -list | awk  '{print $1}' | grep -w "badvpn"` )
+        if [ "$cek" = "$actv" ]; then
         for sama in "${cek[@]}"; do
             sleep 1
-            screen -XS "$sama" quit > /dev/null 2>&1
-            echo -e "[ ${RED}CLOSE$NC ] Closing screen $sama"
+            screen -XS $sama quit > /dev/null 2>&1
+            echo -e "[ ${red}CLOSE$NC ] Closing screen $sama"
         done 
         fi
     done
@@ -271,7 +271,10 @@ sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109"/g' /etc/default/drop
 systemctl daemon-reload >/dev/null 2>&1
 systemctl start dropbear >/dev/null 2>&1
 systemctl restart dropbear >/dev/null 2>&1
-if ! grep -q -w "/bin/false" /etc/shells; then
+cekker=$(cat /etc/shells | grep -w "/bin/false")
+if [[ "$cekker" = "/bin/false" ]];then
+echo -ne
+else
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 fi
@@ -304,6 +307,14 @@ socket = r:TCP_NODELAY=1
 [dropbear]
 accept = 447
 connect = 127.0.0.1:109
+
+[openssh]
+accept = 777
+connect = 127.0.0.1:22
+
+[openvpn]
+accept = 442
+connect = 127.0.0.1:1194
 
 END
 
@@ -479,7 +490,7 @@ echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
 # Blokir Torrent
-echo -e "[ ${GREEN}INFO$NC ] Set iptables"
+echo -e "[ ${green}INFO$NC ] Set iptables"
 sleep 1
 sudo iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
 sudo iptables -A FORWARD -m string --string "announce_peer" --algo bm -j DROP
@@ -492,7 +503,7 @@ sudo iptables -A FORWARD -m string --algo bm --string "announce.php?passkey=" -j
 sudo iptables -A FORWARD -m string --algo bm --string "torrent" -j DROP
 sudo iptables -A FORWARD -m string --algo bm --string "announce" -j DROP
 sudo iptables -A FORWARD -m string --algo bm --string "info_hash" -j DROP
-sudo iptables-save | sudo tee /etc/iptables.up.rules
+sudo iptables-save > /etc/iptables.up.rules
 sudo iptables-restore -t < /etc/iptables.up.rules
 sudo netfilter-persistent save >/dev/null 2>&1
 sudo netfilter-persistent reload >/dev/null 2>&1
@@ -513,25 +524,25 @@ fi
 # apt autoremove -y >/dev/null 2>&1
 # finishing
 cd
-echo -e "[ ${GREEN}ok${NC} ] Restarting openvpn"
+echo -e "[ ${green}ok${NC} ] Restarting openvpn"
 /etc/init.d/cron restart >/dev/null 2>&1
 sleep 1
-echo -e "[ ${GREEN}ok${NC} ] Restarting cron"
+echo -e "[ ${green}ok${NC} ] Restarting cron"
 /etc/init.d/ssh restart >/dev/null 2>&1
 sleep 1
-echo -e "[ ${GREEN}ok${NC} ] Restarting ssh"
+echo -e "[ ${green}ok${NC} ] Restarting ssh"
 /etc/init.d/dropbear restart >/dev/null 2>&1
 sleep 1
-echo -e "[ ${GREEN}ok${NC} ] Restarting dropbear"
+echo -e "[ ${green}ok${NC} ] Restarting dropbear"
 /etc/init.d/fail2ban restart >/dev/null 2>&1
 sleep 1
-echo -e "[ ${GREEN}ok${NC} ] Restarting fail2ban"
+echo -e "[ ${green}ok${NC} ] Restarting fail2ban"
 /etc/init.d/stunnel5 restart >/dev/null 2>&1
 sleep 1
-echo -e "[ ${GREEN}ok${NC} ] Restarting stunnel5"
+echo -e "[ ${green}ok${NC} ] Restarting stunnel5"
 /etc/init.d/vnstat restart >/dev/null 2>&1
 sleep 1
-echo -e "[ ${GREEN}ok${NC} ] Restarting squid "
+echo -e "[ ${green}ok${NC} ] Restarting squid "
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500 >/dev/null 2>&1
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500 >/dev/null 2>&1
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500 >/dev/null 2>&1
@@ -546,4 +557,4 @@ sleep 5
 clear
 rm -fr /root/key.pem >/dev/null 2>&1
 rm -fr /root/cert.pem >/dev/null 2>&1
-rm -fr /root/ssh-vpn.sh >/dev/null 2>&1
+rm -fr /root/ssh-vpn.sh >/dev/null 2>&1�
