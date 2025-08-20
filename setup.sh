@@ -142,9 +142,6 @@ mkdir -p /usr/local/etc/xray
 #rm -fr /etc/xray/domain
 # // String / Request Data
 mkdir -p /var/lib/scrz-prem >/dev/null 2>&1
-domain=$(cat /etc/xray/domain)
-echo "IP=$domain" >> /var/lib/scrz-prem/ipvps.conf
-echo "$domain" > /etc/xray/domain
 wget https://raw.githubusercontent.com/eddyme23/AIO/main/cf.sh && chmod +x cf.sh && ./cf.sh
 
 sleep 2
@@ -176,9 +173,7 @@ wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/ins-xray.sh && chmod
 wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 
 #install slowdns
-echo -e "\033[0;34m┌─────────────────────────────────────────┐${NC}"
-echo -e " \E[41;1;39m          ⇱ Install SlowDNS ⇲           \E[0m$NC"
-echo -e "\033[0;34m└─────────────────────────────────────────┘${NC}"
+
 sleep 1
 wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/install-slowdns.sh && chmod +x install-slowdns.sh && ./install-slowdns.sh
 
@@ -337,21 +332,7 @@ gg="PM"
 else
 gg="AM"
 fi
-echo -e "[ ${green}Pleas Wait Update DB ${NC} ]"
-git clone https://github.com/NevermoreSSH/limit.git /root/limit/ &> /dev/null
-babu=$(cat /etc/.geovpn/license.key)
-echo -e "$babu $IP" >> /root/limit/limit.txt
-cd /root/limit
-    git config --global user.email "pribadi.no99@gmail.com" &> /dev/null
-    git config --global user.name "NevermoreSSH" &> /dev/null
-    rm -fr .git &> /dev/null
-    git init &> /dev/null
-    git add . &> /dev/null
-    git commit -m m &> /dev/null
-    git branch -M main &> /dev/null
-    git remote add origin https://github.com/NevermoreSSH/limit
-    git push -f https://github.com/kenDevXD/limit.git &> /dev/null
-cd
+
 echo "1.1" >> /home/.ver
 rm -fr /root/limit
 curl -sS ifconfig.me > /etc/myipvps
