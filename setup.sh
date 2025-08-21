@@ -90,7 +90,7 @@ clear
 fi
 echo -e "${GREEN}Starting Installation............${NC}"
 # // Go To Root Directory
-cd /root/
+# cd /root/
 # // Remove
 apt-get remove --purge nginx* -y
 apt-get remove --purge nginx-common* -y
@@ -143,7 +143,7 @@ mkdir -p /usr/local/etc/xray
 # // String / Request Data
 mkdir -p /var/lib/scrz-prem >/dev/null 2>&1
 echo "IP=$(cat /etc/xray/domain)" >> /var/lib/scrz-prem/ipvps.conf
-wget https://raw.githubusercontent.com/eddyme23/AIO/main/cf.sh && chmod +x cf.sh && ./cf.sh
+cp cf.sh /root/cf.sh && chmod +x /root/cf.sh && /root/cf.sh
 
 sleep 2
 
@@ -152,71 +152,71 @@ echo -e "\033[0;34m┌───────────────────�
 echo -e "                          ⇱ INSTALL DOMAIN ⇲            "
 echo -e "\033[0;34m└─────────────────────────────────────────┘${NC}"
 sleep 1
-wget https://raw.githubusercontent.com/eddyme23/AIO/main/cf.sh && chmod +x cf.sh && ./cf.sh
+cp cf.sh /root/cf.sh && chmod +x /root/cf.sh && /root/cf.sh
 #install jembot
 echo -e "\033[0;34m┌─────────────────────────────────────────┐${NC}"
 echo -e " \E[41;1;39m           ⇱ Install Jembot ⇲            \E[0m$NC"
 echo -e "\033[0;34m└─────────────────────────────────────────┘${NC}"
 sleep 1 
-wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/jembot.sh && chmod +x jembot.sh && ./jembot.sh
+cp jembot.sh /root/jembot.sh && chmod +x /root/jembot.sh && /root/jembot.sh
 #install ssh-vpn
 echo -e "\033[0;34m┌─────────────────────────────────────────┐${NC}"
 echo -e " \E[41;1;39m          ⇱ Install SSH / WS ⇲           \E[0m$NC"
 echo -e "\033[0;34m└─────────────────────────────────────────┘${NC}"
 sleep 1
-wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
+cp ssh-vpn.sh /root/ssh-vpn.sh && chmod +x /root/ssh-vpn.sh && /root/ssh-vpn.sh
 #install ins-xray
 echo -e "\033[0;34m┌─────────────────────────────────────────┐${NC}"
 echo -e " \E[41;1;39m            ⇱ Install Xray ⇲             \E[0m$NC"
 echo -e "\033[0;34m└─────────────────────────────────────────┘${NC}"
 sleep 1 
-wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
-wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
+cp ins-xray.sh /root/ins-xray.sh && chmod +x /root/ins-xray.sh && /root/ins-xray.sh
+cp set-br.sh /root/set-br.sh && chmod +x /root/set-br.sh && /root/set-br.sh
 
 #install slowdns
 echo -e "\033[0;34m┌─────────────────────────────────────────┐${NC}"
 echo -e " \E[41;1;39m          ⇱ Install SlowDNS ⇲           \E[0m$NC"
 echo -e "\033[0;34m└─────────────────────────────────────────┘${NC}"
 sleep 1
-wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/install-slowdns.sh && chmod +x install-slowdns.sh && ./install-slowdns.sh
+cp install-slowdns.sh /root/install-slowdns.sh && chmod +x /root/install-slowdns.sh && /root/install-slowdns.sh
 
 # // Download Data
 echo -e "${GREEN}Download Data${NC}"
-wget -q -O /usr/bin/add-ws "https://raw.githubusercontent.com/eddyme23/AIO/main/add-ws.sh"
-wget -q -O /usr/bin/add-ssws "https://raw.githubusercontent.com/eddyme23/AIO/main/add-ssws.sh"
-wget -q -O /usr/bin/add-socks "https://raw.githubusercontent.com/eddyme23/AIO/main/add-socks.sh"
-wget -q -O /usr/bin/add-vless "https://raw.githubusercontent.com/eddyme23/AIO/main/add-vless.sh"
-wget -q -O /usr/bin/add-tr "https://raw.githubusercontent.com/eddyme23/AIO/main/add-tr.sh"
-wget -q -O /usr/bin/add-trgo "https://raw.githubusercontent.com/eddyme23/AIO/main/add-trgo.sh"
-wget -q -O /usr/bin/autoreboot "https://raw.githubusercontent.com/eddyme23/AIO/main/autoreboot.sh"
-wget -q -O /usr/bin/restart "https://raw.githubusercontent.com/eddyme23/AIO/main/restart.sh"
-wget -q -O /usr/bin/tendang "https://raw.githubusercontent.com/eddyme23/AIO/main/tendang.sh"
-wget -q -O /usr/bin/clearlog "https://raw.githubusercontent.com/eddyme23/AIO/main/clearlog.sh"
-wget -q -O /usr/bin/running "https://raw.githubusercontent.com/eddyme23/AIO/main/running.sh"
-wget -q -O /usr/bin/cek-trafik "https://raw.githubusercontent.com/eddyme23/AIO/main/cek-trafik.sh"
-wget -q -O /usr/bin/cek-speed "https://raw.githubusercontent.com/eddyme23/AIO/main/speedtes_cli.py"
-wget -q -O /usr/bin/cek-bandwidth "https://raw.githubusercontent.com/eddyme23/AIO/main/cek-bandwidth.sh"
-wget -q -O /usr/bin/cek-ram "https://raw.githubusercontent.com/eddyme23/AIO/main/ram.sh"
-wget -q -O /usr/bin/limit-speed "https://raw.githubusercontent.com/eddyme23/AIO/main/limit-speed.sh"
-wget -q -O /usr/bin/menu-vless "https://raw.githubusercontent.com/eddyme23/AIO/main/menu-vless.sh"
-wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/eddyme23/AIO/main/menu-vmess.sh"
-wget -q -O /usr/bin/menu-socks "https://raw.githubusercontent.com/eddyme23/AIO/main/menu-socks.sh"
-wget -q -O /usr/bin/menu-ss "https://raw.githubusercontent.com/eddyme23/AIO/main/menu-ss.sh"
-wget -q -O /usr/bin/menu-trojan "https://raw.githubusercontent.com/eddyme23/AIO/main/menu-trojan.sh"
-wget -q -O /usr/bin/menu-trgo "https://raw.githubusercontent.com/eddyme23/AIO/main/menu-trgo.sh"
-wget -q -O /usr/bin/menu-ssh "https://raw.githubusercontent.com/eddyme23/AIO/main/menu-ssh.sh"
-wget -q -O /usr/bin/menu-bckp "https://raw.githubusercontent.com/eddyme23/AIO/main/menu-bckp-telegram.sh"
-wget -q -O /usr/bin/menu-bckp "https://raw.githubusercontent.com/eddyme23/AIO/main/menu-bckp-github.sh"
-wget -q -O /usr/bin/bckp "https://raw.githubusercontent.com/eddyme23/AIO/main/bckpbot.sh"
-wget -q -O /usr/bin/usernew "https://raw.githubusercontent.com/eddyme23/AIO/main/usernew.sh"
-# wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/eddyme23/AIO/main/menu.sh"
-wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/eddyme23/AIO/main/menu4.sh"
-wget -q -O /usr/bin/wbm "https://raw.githubusercontent.com/eddyme23/AIO/main/webmin.sh"
-wget -q -O /usr/bin/xp "https://raw.githubusercontent.com/eddyme23/AIO/main/xp.sh"
+cp add-ws.sh /usr/bin/add-ws
+cp add-ssws.sh /usr/bin/add-ssws
+cp add-socks.sh /usr/bin/add-socks
+cp add-vless.sh /usr/bin/add-vless
+cp add-tr.sh /usr/bin/add-tr
+cp add-trgo.sh /usr/bin/add-trgo
+cp autoreboot.sh /usr/bin/autoreboot
+cp restart.sh /usr/bin/restart
+cp tendang.sh /usr/bin/tendang
+cp clearlog.sh /usr/bin/clearlog
+cp running.sh /usr/bin/running
+cp cek-trafik.sh /usr/bin/cek-trafik
+cp speedtes_cli.py /usr/bin/cek-speed
+cp cek-bandwidth.sh /usr/bin/cek-bandwidth
+cp ram.sh /usr/bin/cek-ram
+cp limit-speed.sh /usr/bin/limit-speed
+cp menu-vless.sh /usr/bin/menu-vless
+cp menu-vmess.sh /usr/bin/menu-vmess
+cp menu-socks.sh /usr/bin/menu-socks
+cp menu-ss.sh /usr/bin/menu-ss
+cp menu-trojan.sh /usr/bin/menu-trojan
+cp menu-trgo.sh /usr/bin/menu-trgo
+cp menu-ssh.sh /usr/bin/menu-ssh
+cp menu-bckp-telegram.sh /usr/bin/menu-bckp
+cp menu-bckp-github.sh /usr/bin/menu-bckp
+cp backup.sh /usr/bin/bckp
+cp usernew.sh /usr/bin/usernew
+# cp menu.sh /usr/bin/menu
+cp menu4.sh /usr/bin/menu
+cp webmin.sh /usr/bin/wbm
+cp xp.sh /usr/bin/xp
 wget -q -O /usr/bin/update "https://raw.githubusercontent.com/eddyme23/AIO/main/update.sh"
-wget -q -O /usr/bin/dns "https://raw.githubusercontent.com/eddyme23/AIO/main/dns.sh"
-wget -q -O /usr/bin/netf "https://raw.githubusercontent.com/eddyme23/AIO/main/netf.sh"
-wget -q -O /usr/bin/bbr "https://raw.githubusercontent.com/eddyme23/AIO/main/bbr.sh"
+cp dns.sh /usr/bin/dns
+cp netf.sh /usr/bin/netf
+cp bbr.sh /usr/bin/bbr
 #wget -q -O /usr/bin/del-xrays "https://raw.githubusercontent.com/eddyme23/AIO/main/del-xrays.sh"
 #wget -q -O /usr/bin/user-xrays "https://raw.githubusercontent.com/eddyme23/AIO/main/user-xrays.sh"
 chmod +x /usr/bin/add-ws
@@ -258,7 +258,7 @@ chmod +x /usr/bin/bbr
 
 # > install gotop
     gotop_latest="$(curl -s https://api.github.com/repos/NevermoreSSH/gotop/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
-    gotop_link="https://github.com/NevermoreSSH/gotop/releases/download/gotopV4/gotop_v4.2.0_linux_amd64.deb"
+    gotop_link="https://github.com/NevermoreSSH/gotop/releases/download/v${gotop_latest}/gotop_v${gotop_latest}_linux_amd64.deb"
     curl -sL "$gotop_link" -o /tmp/gotop.deb
     dpkg -i /tmp/gotop.deb >/dev/null 2>&1
 
@@ -397,5 +397,4 @@ rm -fr /root/setup.sh
 rm -fr /root/domain
 history -c
 
-read -r -p "$( echo -e "Press [ ${NC}${green}Enter${NC} ${CYAN}]${NC} For Reboot") "
-reboot
+# Script finished
