@@ -46,8 +46,8 @@ export WARNING="${RED}\e[5m"
 export UNDERLINE="\e[4m"
 
 # // Exporting URL Host
-export Server_URL="raw.githubusercontent.com/eddyme23/AIO/main/test"
-export Server1_URL="raw.githubusercontent.com/eddyme23/AIO/main/limit"
+export Server_URL="raw.githubusercontent.com/guruzgh/AIO/main/test"
+export Server1_URL="raw.githubusercontent.com/guruzgh/AIO/main/limit"
 export Server_Port="443"
 export Server_IP="underfined"
 export Script_Mode="Stable"
@@ -213,12 +213,12 @@ cp usernew.sh /usr/bin/usernew
 cp menu4.sh /usr/bin/menu
 cp webmin.sh /usr/bin/wbm
 cp xp.sh /usr/bin/xp
-wget -q -O /usr/bin/update "https://raw.githubusercontent.com/eddyme23/AIO/main/update.sh"
+wget -q -O /usr/bin/update "https://raw.githubusercontent.com/guruzgh/AIO/main/update.sh"
 cp dns.sh /usr/bin/dns
 cp netf.sh /usr/bin/netf
 cp bbr.sh /usr/bin/bbr
-#wget -q -O /usr/bin/del-xrays "https://raw.githubusercontent.com/eddyme23/AIO/main/del-xrays.sh"
-#wget -q -O /usr/bin/user-xrays "https://raw.githubusercontent.com/eddyme23/AIO/main/user-xrays.sh"
+#wget -q -O /usr/bin/del-xrays "https://raw.githubusercontent.com/guruzgh/AIO/main/del-xrays.sh"
+#wget -q -O /usr/bin/user-xrays "https://raw.githubusercontent.com/guruzgh/AIO/main/user-xrays.sh"
 chmod +x /usr/bin/add-ws
 chmod +x /usr/bin/add-ssws
 chmod +x /usr/bin/add-socks
