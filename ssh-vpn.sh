@@ -460,9 +460,9 @@ echo -e "[ ${green}ok${NC} ] Restarting dropbear"
 /etc/init.d/fail2ban restart >/dev/null 2>&1
 sleep 1
 echo -e "[ ${green}ok${NC} ] Restarting fail2ban"
-/etc/init.d/stunnel5 restart >/dev/null 2>&1
+/etc/init.d/stunnel4 restart
 sleep 1
-echo -e "[ ${green}ok${NC} ] Restarting stunnel5"
+echo -e "[ ${green}ok${NC} ] Restarting stunnel4"
 /etc/init.d/vnstat restart >/dev/null 2>&1
 sleep 1
 echo -e "[ ${green}ok${NC} ] Restarting squid "
