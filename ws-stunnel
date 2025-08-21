@@ -118,7 +118,21 @@ class ConnectionHandler(threading.Thread):
             while '\r\n\r\n' not in self.client_buffer:
                 self.client_buffer += self.client.recv(1024)
 
-            self.method_CONNECT(DEFAULT_HOST)
+            header_end = self.client_buffer.find('\r\n\r\n')
+            
+            # The data after the headers is the start of the real payload
+            payload_start = self.client_buffer[header_end + 4:]
+
+            # Connect to the target and send the HTTP response
+            self.connect_target(DEFAULT_HOST)
+            self.client.sendall(RESPONSE)
+
+            # Forward the start of the payload if it was received in the same chunk
+            if payload_start:
+                self.target.send(payload_start)
+
+            self.doCONNECT()
+            
         except Exception as e:
             self.log += ' - error: ' + str(e)
             self.server.printLog(self.log)
