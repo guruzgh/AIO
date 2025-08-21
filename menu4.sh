@@ -58,8 +58,8 @@ export WARNING="${RED}\e[5m"
 export UNDERLINE="\e[4m"
 
 # // Exporting URL Host
-export Server_URL="raw.githubusercontent.com/eddyme23/AIO/main/test"
-export Server1_URL="raw.githubusercontent.com/eddyme23/AIO/main/limit"
+export Server_URL="raw.githubusercontent.com/guruzgh/AIO/main/test"
+export Server1_URL="raw.githubusercontent.com/guruzgh/AIO/main/limit"
 export Server_Port="443"
 export Server_IP="underfined"
 export Script_Mode="Stable"
@@ -179,7 +179,7 @@ echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 menu
 }
-export sem=$( curl -s https://raw.githubusercontent.com/eddyme23/AIO/main/test/versions)
+export sem=$( curl -s https://raw.githubusercontent.com/guruzgh/AIO/main/test/versions)
 export pak=$( cat /home/.ver)
 IPVPS=$(curl -s ipinfo.io/ip )
 IPVPS=$(curl -sS ipv4.icanhazip.com)
@@ -297,8 +297,8 @@ case $opt in
 23) clear ; dns ;;
 24) clear ; netf ;;
 25) clear ; tendang ;;
-26) clear ; wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/install-hysteria.sh && chmod +x install-hysteria.sh && ./install-hysteria.sh ;;
-27) clear ; wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/install-slowdns.sh && chmod +x install-slowdns.sh && ./install-slowdns.sh ;;
+26) clear ; wget -q https://raw.githubusercontent.com/guruzgh/AIO/main/install-hysteria.sh && chmod +x install-hysteria.sh && ./install-hysteria.sh ;;
+27) clear ; wget -q https://raw.githubusercontent.com/guruzgh/AIO/main/install-slowdns.sh && chmod +x install-slowdns.sh && ./install-slowdns.sh ;;
 55) clear ; wget -q -O /usr/bin/xraychanger "https://raw.githubusercontent.com/NevermoreSSH/Xcore-custompath/main/xraychanger.sh" && chmod +x /usr/bin/xraychanger && xraychanger ;;
 66) clear ; bbr ;;
 77) clear ; wget -q -O /usr/bin/swapram "https://raw.githubusercontent.com/NevermoreSSH/swapram/main/swapram.sh" && chmod +x /usr/bin/swapram && swapram ;;

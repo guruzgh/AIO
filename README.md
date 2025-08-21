@@ -1,4 +1,4 @@
- <p align="center">
+<p align="center">
 
 <h2 align="center">
 This auto installer script is free of charge.
@@ -67,7 +67,7 @@ PLEASE MAKE SURE YOUR DOMAIN SETTINGS IN YOUR CLOUDFLARE AS BELOW (SSL/TLS SETTI
 ♦️ Installation Link <br>
 
   ```html
-apt --fix-missing update && apt update && apt upgrade -y && apt install -y bzip2 gzip coreutils screen dpkg wget vim curl nano zip unzip && wget -q https://raw.githubusercontent.com/eddyme23/AIO/main/setup.sh && chmod +x setup.sh && screen -S setup ./setup.sh
+apt --fix-missing update && apt update && apt upgrade -y && apt install -y bzip2 gzip coreutils screen dpkg wget vim curl nano zip unzip && wget -q https://raw.githubusercontent.com/guruzgh/AIO/main/setup.sh && chmod +x setup.sh && screen -S setup ./setup.sh
   ```
 <b>
 
