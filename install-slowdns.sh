@@ -37,8 +37,17 @@ install_slowdns() {
   chmod +x /etc/slowdns/dns-server
   /etc/slowdns/dns-server -gen-key -privkey-file /etc/slowdns/server.key -pubkey-file /etc/slowdns/server.pub
 
+  echo -e "\n\n=================================================="
+  echo -e "Your SlowDNS Public Key:"
+  cat /etc/slowdns/server.pub
+  echo -e "==================================================\n\n"
+
   domain=$(cat /etc/xray/domain)
-  Nameserver="ns.${domain}"
+  suggested_ns="ns.${domain}"
+  read -p "Enter your Nameserver (or press enter to use default: ${suggested_ns}): " Nameserver
+  if [ -z "$Nameserver" ]; then
+    Nameserver="$suggested_ns"
+  fi
   echo -e "$Nameserver" > /etc/slowdns/nsdomain
 
   rm -f /etc/systemd/system/dnstt.service
