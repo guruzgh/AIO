@@ -70,7 +70,7 @@ echo -e ""
 echo -e "    [1] Restart All Services"
 echo -e "    [2] Restart OpenSSH"
 echo -e "    [3] Restart Dropbear"
-echo -e "    [4] Restart Stunnel5"
+echo -e "    [4] Restart Stunnel4"
 echo -e "    [5] Restart Nginx"
 echo -e "    [6] Restart Badvpn"
 echo -e "    [x] Menu"
@@ -88,7 +88,7 @@ case $Restart in
                 systemctl restart xray.service >/dev/null 2>&1
                 /etc/init.d/ssh restart
                 /etc/init.d/dropbear restart
-                /etc/init.d/stunnel5 restart
+                systemctl restart stunnel4
                 /etc/init.d/fail2ban restart
                 /etc/init.d/cron restart
                 /etc/init.d/nginx restart
@@ -125,11 +125,11 @@ case $Restart in
                 ;;
                 4)
                 clear
-                /etc/init.d/stunnel5 restart
+                systemctl restart stunnel4
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
-                echo -e "        Stunnel5 Service Restarted    "
+                echo -e "        Stunnel4 Service Restarted    "
                 echo -e ""
                 echo -e "======================================"
                 ;;
