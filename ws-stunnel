@@ -116,21 +116,7 @@ class ConnectionHandler(threading.Thread):
         try:
             self.client_buffer = self.client.recv(BUFLEN)
 
-            # Pre-process buffer to handle custom payload format
-            self.client_buffer = self.client_buffer.replace('[crlf]', '\r\n').replace('[lf]', '\n')
-
             hostPort = self.findHeader(self.client_buffer, 'X-Real-Host')
-
-            if hostPort == '':
-                # Fallback to parsing 'Host:' header if 'X-Real-Host' is not found
-                hostPort = self.findHeader(self.client_buffer, 'Host')
-                if hostPort != '':
-                    # Clean up the extracted value
-                    hostPort = hostPort.replace('https://', '').replace('http://', '')
-                    
-                    # Handle multiple hosts separated by semicolons, and take the first one
-                    hosts = hostPort.split(';')
-                    hostPort = hosts[0].strip()
 
             if hostPort == '':
                 hostPort = DEFAULT_HOST
@@ -172,9 +158,6 @@ class ConnectionHandler(threading.Thread):
         aux = head.find(':', aux)
         head = head[aux+2:]
         aux = head.find('\r\n')
-
-        if aux == -1:
-            aux = head.find('\n')
 
         if aux == -1:
             return ''
