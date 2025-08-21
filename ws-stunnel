@@ -114,7 +114,10 @@ class ConnectionHandler(threading.Thread):
 
     def run(self):
         try:
-            self.client.recv(BUFLEN)
+            self.client_buffer = ''
+            while '\r\n\r\n' not in self.client_buffer:
+                self.client_buffer += self.client.recv(1024)
+
             self.method_CONNECT(DEFAULT_HOST)
         except Exception as e:
             self.log += ' - error: ' + str(e)
